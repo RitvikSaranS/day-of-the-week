@@ -12,13 +12,9 @@ def century_code(year):
         case _:
             return 6
 
-def is_leap(year):
-    leap = False
-    if year%400 == 0:
-        leap = True
-    elif not(year%100 == 0) and year%4 == 0:
-        leap = True
-    return leap
+def year_code(year):
+    year_part = year%100
+    return (year_part + int(year_part/4))%7
 
 def month_code(month, year):
     match month:
@@ -43,9 +39,13 @@ def month_code(month, year):
         case "april" | "july":
             return 6
 
-def year_code(year):
-    year_part = year%100
-    return (year_part + int(year_part/4))%7
+def is_leap(year):
+    leap = False
+    if year%400 == 0:
+        leap = True
+    elif not(year%100 == 0) and year%4 == 0:
+        leap = True
+    return leap
 
 def test_date(year, month, day):
     is_valid = False
@@ -81,4 +81,3 @@ if test_date(year, month, day):
             print("Saturday")
 else:
     print("The date does not exists")
-
