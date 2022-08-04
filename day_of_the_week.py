@@ -1,3 +1,5 @@
+#This code gives the day of the week of any date given
+#Please give the month in words and not by the corresponding number. 
 def century_code(year):
     century_part = int(year/100)
     match century_part%4:
