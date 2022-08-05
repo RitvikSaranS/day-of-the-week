@@ -66,13 +66,16 @@ def test_date(year, month, day):
         is_valid = True
     return is_valid
 
-year = int(input("Enter the year : "))
-month = input("Enter the month : ")
 try:
-    month = str_month(int(month))
+    year = int(input("Enter the year : "))
+    month = input("Enter the month : ")
+    try:
+        month = str_month(int(month))
+    except:
+        month = month.lower()
+    day = int(input("Enter the day : "))
 except:
-    month = month.lower()
-day = int(input("Enter the day : "))
+    print("Try again with proper format")
 
 if test_date(year, month, day):
     day_code = (century_code(year) + year_code(year) + month_code(month, year) + day)%7
