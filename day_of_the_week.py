@@ -1,5 +1,4 @@
-#This code gives the day of the week of any date given
-#Please give the month in words and not by the corresponding number. 
+#This code gives the day of the week of any date given 
 def century_code(year):
     century_part = int(year/100)
     match century_part%4:
@@ -40,6 +39,14 @@ def month_code(month, year):
             return 5
         case "april" | "july":
             return 6
+ 
+def str_month(month):
+    if month > 12 or month < 1:
+        return "dummy"
+    dict_month = {1 : "january", 2 : "february", 3 : "march", 4 : "april",
+     5 : "may", 6 : "june", 7 : "july", 8 : "august", 9 : "september", 10 : "october"
+     , 11 : "november", 12 : "december"}
+    return dict_month[month]
 
 def is_leap(year):
     leap = False
@@ -51,17 +58,20 @@ def is_leap(year):
 
 def test_date(year, month, day):
     is_valid = False
-    if int(day) == day and int(year) == year and str(month) == month:
-        if month in ["april", "june", "september", "november"] and day<=30:
-            is_valid = True
-        elif month in ["january", "march", "may", "july", "august", "october", "december"] and day<=31:
-            is_valid = True
-        elif month == "february" and (((is_leap(year) and day<=29)) or day<=28):
-            is_valid = True
+    if month in ["april", "june", "september", "november"] and day<=30:
+        is_valid = True
+    elif month in ["january", "march", "may", "july", "august", "october", "december"] and day<=31:
+        is_valid = True
+    elif month == "february" and (((is_leap(year) and day<=29)) or day<=28):
+        is_valid = True
     return is_valid
 
 year = int(input("Enter the year : "))
-month = (input("Enter the month : ")).lower()
+month = input("Enter the month : ")
+try:
+    month = str_month(int(month))
+except:
+    month = month.lower()
 day = int(input("Enter the day : "))
 
 if test_date(year, month, day):
