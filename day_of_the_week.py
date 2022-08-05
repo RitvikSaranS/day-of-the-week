@@ -75,7 +75,7 @@ try:
         month = month.lower()
     day = int(input("Enter the day : "))
 except:
-    print("Try again with proper format")
+    print("Please enter the date in proper format")
 
 if test_date(year, month, day):
     day_code = (century_code(year) + year_code(year) + month_code(month, year) + day)%7
